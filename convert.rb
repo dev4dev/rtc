@@ -1,14 +1,16 @@
 require 'nokogiri'
 require 'json'
+require 'cgi'
 
 def comment_to_json(post, comment)
+  name = comment.at_css('name').content
   return {
     id: "idb_#{comment.get_attribute('id')}",
     pid: "idb_#{comment.get_attribute('parentid')}",
     text: "<p>#{comment.at_css("text").content}</p>",
     user: {
-        name: comment.at_css('name').content,
-        id: "",
+        name: name,
+        id: "idb_#{name.gsub(" ", "_")}",
         picture: "",
         admin: false,
         ip: comment.at_css("ip").content

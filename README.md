@@ -1,5 +1,6 @@
 # rtc
 
 1. put data in input.xml  
-2. run `ruby convert.rb`  
-3. get output.json  
+2. `bundle install`
+3. `ruby convert.rb`  
+4. get output.json  
