@@ -27,7 +27,11 @@ end
 
 ## ---------------
 
-doc = Nokogiri::XML(open('./input.xml'))
+input_file = ARGV[0]
+
+raise ArgumentError.new("pass input file name") if input_file.nil?
+
+doc = Nokogiri::XML(open(input_file))
 posts = doc.css('blogpost')
 
 output = []
@@ -39,7 +43,4 @@ end
 
 output.flatten!
 
-File.open('./output.json', 'w') do |f|
-  f.write(output.to_json)
-end
-puts "done"
+puts output.to_json
